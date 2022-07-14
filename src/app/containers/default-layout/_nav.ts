@@ -12,6 +12,94 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
+    name: 'Analytics'
+  },
+  {
+    name: 'Customers record',
+    url: '/theme/colors',
+    iconComponent: { name: 'cil-user' }
+  },
+  {
+    name: 'Products record',
+    url: '/theme/colors',
+    iconComponent: { name: 'cil-tags' }
+  },
+  {
+    title: true,
+    name: 'Catalogue'
+  },
+  {
+    name: 'Products',
+    url: '/theme/colors',
+    iconComponent: { name: 'cil-tags' }
+  },
+  {
+    name: 'Categories',
+    url: '/theme/colors',
+    iconComponent: { name: 'cilTag' }
+  },
+  {
+    name: 'Product Class',
+    url: '/theme/colors',
+    iconComponent: { name: 'cil-window-restore' }
+  },
+  {
+    title: true,
+    name: 'Customers'
+  },
+  {
+    name: 'Customers',
+    url: '/theme/colors',
+    iconComponent: { name: 'cil-user' }
+  },
+  {
+    title: true,
+    name: 'Subscribers'
+  },
+  {
+    name: 'Subscribers',
+    url: '/subscribers',
+    iconComponent: { name: 'cilUserFollow' }
+  },
+  {
+    title: true,
+    name: 'Partner'
+  },
+  {
+    name: 'Partners',
+    url: '/theme/colors',
+    iconComponent: { name: 'cilGroup' }
+  },
+  {
+    name: 'Stock record',
+    url: '/theme/colors',
+    iconComponent: { name: 'cilTruck' }
+  },
+  {
+    title: true,
+    name: 'Blog'
+  },
+  {
+    name: 'Posts',
+    url: '/theme/colors',
+    iconComponent: { name: 'cilNewspaper' }
+  },
+  {
+    title: true,
+    name: 'Retention'
+  },
+  {
+    name: 'Sliders',
+    url: '/theme/colors',
+    iconComponent: { name: 'cil-truck' }
+  },
+  {
+    name: 'Banners',
+    url: '/theme/colors',
+    iconComponent: { name: 'cil-newspaper' }
+  },
+  {
+    title: true,
     name: 'Theme'
   },
   {
