@@ -21,6 +21,11 @@ const routes: Routes = [
     },
     children: [
       {
+        path: 'subscribers',
+        loadChildren: () =>
+          import('./modules/subscribers/subscribers.module').then((m) => m.SubscribersModule)
+      },
+      {
         path: 'dashboard',
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
@@ -100,7 +105,7 @@ const routes: Routes = [
       title: 'Register Page'
     }
   },
-  {path: '**', redirectTo: 'dashboard'}
+  { path: '**', redirectTo: 'dashboard' }
 ];
 
 @NgModule({

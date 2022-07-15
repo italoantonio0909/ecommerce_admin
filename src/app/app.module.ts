@@ -3,6 +3,7 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxsModule } from '@ngxs/store';
 
 import {
   PERFECT_SCROLLBAR_CONFIG,
@@ -43,8 +44,12 @@ import {
   TabsModule,
   UtilitiesModule,
 } from '@coreui/angular';
+import { HttpClientModule } from '@angular/common/http';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { SubscribersModule } from './modules/subscribers/subscribers.module';
+import { SubscriberState } from './modules/subscribers/store/state';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -56,12 +61,19 @@ const APP_CONTAINERS = [
   DefaultLayoutComponent,
 ];
 
+const states = [
+  SubscriberState
+]
+
 @NgModule({
   declarations: [AppComponent, ...APP_CONTAINERS],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
+    SubscribersModule,
+    DashboardModule,
     AvatarModule,
     BreadcrumbModule,
     FooterModule,
@@ -85,12 +97,11 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
+    NgxsModule.forRoot([...states], {
+      developmentMode: true,
+    }),
   ],
   providers: [
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy,
-    },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
