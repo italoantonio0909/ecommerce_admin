@@ -1,1 +1,39 @@
-<p>subscriber-list works!</p>
+<c-row>
+    <c-col xs>
+        <c-card class="mb-4">
+            <c-card-header>Subscribers</c-card-header>
+            <c-card-body>
+                <table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0 border">
+                    <thead cTableColor="light">
+                        <tr>
+                            <th>Email</th>
+                            <th>Created at</th>
+                            <th>Activity</th>
+                            <th>Status</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let subscriber of subscribers$ | async">
+                            <td>
+                                <div>{{subscriber?.email}}</div>
+                            </td>
+                            <td>
+                                <div>{{subscriber?.created_at | date : "M/d/yy, h:mm a"}}</div>
+                            </td>
+                            <td>
+                                <div class="small text-medium-emphasis">Last modified</div>
+                                <div>{{subscriber?.modified_at | date : "M/d/yy, h:mm a"}}</div>
+                            </td>
+                            <td>
+                                <div>
+                                    <!-- <c-badge color="secondary">{{subscriber?.status}}</c-badge> -->
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
