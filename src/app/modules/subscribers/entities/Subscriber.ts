@@ -8,9 +8,6 @@ export interface Subscriber {
 
 
 export interface SubscriberPaginated {
-    limit: number,
     count: number,
-    next: number,
-    previous: number,
     results: Array<Subscriber>
 }
