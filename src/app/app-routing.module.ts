@@ -28,7 +28,7 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () =>
-          import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+          import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
         path: 'theme',

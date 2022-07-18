@@ -11,14 +11,34 @@ import { Subscriber } from '../../entities/Subscriber';
 })
 export class SubscriberListComponent implements OnInit {
 
+  limitOfDocuments: number = 5;
+
+  page: number = 1;
+
   constructor(private store: Store) { }
 
-  @Select(SubscriberState.subscriberGetData) subscribers$: Observable<Array<Subscriber>>
+  @Select(SubscriberState.subscriberGetData) subscribers$: Observable<Array<Subscriber>>;
+
+  @Select(SubscriberState.subscriberGetCounter) subscriberCounter$: Observable<number>;
 
   ngOnInit(): void {
-    this.store.dispatch(new SubscriberFetchData());
+    this.subscriberFetchData(this.limitOfDocuments, this.page);
+  }
 
-    this.subscribers$.subscribe(console.log)
+  subscriberFetchData = (limitOfDocuments: number, page: number,) => {
+    this.page = page;
+    this.limitOfDocuments = limitOfDocuments;
+    this.store.dispatch(new SubscriberFetchData(limitOfDocuments, page));
+  }
+
+  createCounter(counter: number) {
+    const total = Math.ceil(counter / this.limitOfDocuments)
+    return new Array(total)
+  }
+
+  changeValuePage(event: any) {
+    // const page = parseInt(event.target.value);
+    // this.subscriberFetchData(this.limitOfDocuments, page)
   }
 
 }

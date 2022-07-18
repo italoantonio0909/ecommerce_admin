@@ -27,12 +27,44 @@
                             </td>
                             <td>
                                 <div>
-                                    <!-- <c-badge color="secondary">{{subscriber?.status}}</c-badge> -->
+                                    <c-badge [color]="subscriber?.status == 'active' ?'success':'error'">
+                                        {{subscriber?.status}}</c-badge>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+
+                <c-container class="mt-2">
+                    <c-row>
+                        <c-col>
+                            <div *ngIf="subscriberCounter$ | async as counter">
+                                <c-pagination aria-label="Page navigation example">
+                                    <c-page-item aria-label="Previous">
+                                        <a cPageLink routerLink="./"><span aria-hidden="true">&laquo;</span></a>
+                                    </c-page-item>
+                                    <c-page-item *ngFor="let e of createCounter(counter); let i = index;"
+                                        [active]="i+1==page">
+                                        <a style="cursor: pointer;" cPageLink
+                                            (click)="subscriberFetchData(limitOfDocuments, i+1)">{{i+1}}</a>
+                                    </c-page-item>
+                                    <c-page-item aria-label="Next">
+                                        <a cPageLink routerLink="./"><span aria-hidden="true">&raquo;</span></a>
+                                    </c-page-item>
+                                </c-pagination>
+                            </div>
+                        </c-col>
+                        <c-col class="mt-2">
+                            <select aria-label="" (change)="changeValuePage($event)" cSelect class="mb-3" sizing="lg"
+                                sizing="">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                        </c-col>
+                    </c-row>
+                </c-container>
             </c-card-body>
         </c-card>
     </c-col>
