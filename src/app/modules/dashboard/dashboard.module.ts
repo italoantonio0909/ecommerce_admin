@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CardModule, GridModule, ProgressModule } from '@coreui/angular';
-import { ChartsModule } from '../../views/charts/charts.module';
+import { ChartjsModule } from '@coreui/angular-chartjs';
+import { IconModule } from '@coreui/icons-angular';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ChartsModule } from '../../views/charts/charts.module';
   imports: [
     CommonModule,
     ProgressModule,
-    ChartsModule,
+    IconModule,
+    ChartjsModule,
     CardModule,
     GridModule,
     DashboardRoutingModule

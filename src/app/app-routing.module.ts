@@ -21,14 +21,14 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'subscribers',
-        loadChildren: () =>
-          import('./modules/subscribers/subscribers.module').then((m) => m.SubscribersModule)
-      },
-      {
         path: 'dashboard',
         loadChildren: () =>
           import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule)
+      },
+      {
+        path: 'subscribers',
+        loadChildren: () =>
+          import('./modules/subscribers/subscribers.module').then((m) => m.SubscribersModule)
       },
       {
         path: 'theme',
@@ -105,7 +105,7 @@ const routes: Routes = [
       title: 'Register Page'
     }
   },
-  { path: '**', redirectTo: 'dashboard' }
+  // { path: '**', redirectTo: 'dashboard' }
 ];
 
 @NgModule({

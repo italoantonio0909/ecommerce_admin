@@ -58,6 +58,12 @@ export class SubscriberState {
     ) {
         const state = ctx.getState();
 
+        const { subscribersTotal } = state;
+
+        if (subscribersTotal) {
+            return state
+        }
+
         return this.subscriberService.subscriberFetchTotal().pipe(
             tap(({ subscribersTotal }) =>
                 ctx.setState({ ...state, subscribersTotal }))
