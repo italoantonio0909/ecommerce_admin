@@ -29,14 +29,14 @@ export const navItems: INavData[] = [
     name: 'Catalogue'
   },
   {
-    name: 'Products',
-    url: '/theme/colors',
-    iconComponent: { name: 'cil-tags' }
-  },
-  {
     name: 'Categories',
     url: '/catalogue/category',
     iconComponent: { name: 'cilTag' }
+  },
+  {
+    name: 'Products',
+    url: '/theme/colors',
+    iconComponent: { name: 'cil-tags' }
   },
   {
     name: 'Product Class',

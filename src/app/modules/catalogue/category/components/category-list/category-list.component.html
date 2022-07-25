@@ -1,1 +1,62 @@
-<p>category-list works!</p>
+<c-row>
+    <c-col xs>
+        <c-card class="mb-4">
+            <c-card-header>Categories</c-card-header>
+            <c-card-body>
+                <table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0 border">
+                    <thead cTableColor="light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Created at</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let category of categories$ | async">
+                            <td>
+                                <div>{{category?.name}}</div>
+                            </td>
+                            <td>
+                                <div>{{category?.created_at | date : "M/d/yy, h:mm a"}}</div>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <c-container class="mt-2">
+                    <c-row>
+                        <c-col>
+                            <div *ngIf="categoriesCount$ | async as counter">
+                                <c-pagination aria-label="Page navigation example">
+                                    <c-page-item aria-label="Previous">
+                                        <a cPageLink routerLink="./"><span aria-hidden="true">&laquo;</span></a>
+                                    </c-page-item>
+                                    <c-page-item *ngFor="let e of createCounter(counter); let i = index;"
+                                        [active]="i+1==page">
+                                        <a style="cursor: pointer;"
+                                            (click)="categoriesPaginateList(limitOfDocuments, i+1)"
+                                            cPageLink>{{i+1}}</a>
+                                    </c-page-item>
+                                    <c-page-item aria-label="Next">
+                                        <a cPageLink routerLink="./"><span aria-hidden="true">&raquo;</span></a>
+                                    </c-page-item>
+                                </c-pagination>
+                            </div>
+                        </c-col>
+                        <!-- <c-col class="mt-2">
+                            <select aria-label="" (change)="changeValuePage($event)" cSelect class="mb-3" sizing="lg"
+                                sizing="">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                        </c-col> -->
+                    </c-row>
+                </c-container>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>

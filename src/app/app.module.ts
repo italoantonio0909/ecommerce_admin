@@ -51,6 +51,7 @@ import { SubscribersModule } from './modules/subscribers/subscribers.module';
 import { SubscriberState } from './modules/subscribers/store/state';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { CatalogueModule } from './modules/catalogue/catalogue.module';
+import { CatalogueCategoryState } from './modules/catalogue/category/store/state';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -63,7 +64,8 @@ const APP_CONTAINERS = [
 ];
 
 const states = [
-  SubscriberState
+  SubscriberState,
+  CatalogueCategoryState,
 ]
 
 @NgModule({
