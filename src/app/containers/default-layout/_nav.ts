@@ -35,7 +35,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Categories',
-    url: '/theme/colors',
+    url: '/catalogue/category',
     iconComponent: { name: 'cilTag' }
   },
   {

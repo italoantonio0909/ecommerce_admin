@@ -31,6 +31,11 @@ const routes: Routes = [
           import('./modules/subscribers/subscribers.module').then((m) => m.SubscribersModule)
       },
       {
+        path: 'catalogue',
+        loadChildren: () =>
+          import('./modules/catalogue/catalogue.module').then((m) => m.CatalogueModule)
+      },
+      {
         path: 'theme',
         loadChildren: () =>
           import('./views/theme/theme.module').then((m) => m.ThemeModule)

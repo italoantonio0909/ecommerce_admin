@@ -50,6 +50,7 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { SubscribersModule } from './modules/subscribers/subscribers.module';
 import { SubscriberState } from './modules/subscribers/store/state';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { CatalogueModule } from './modules/catalogue/catalogue.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -73,6 +74,7 @@ const states = [
     HttpClientModule,
     AppRoutingModule,
     SubscribersModule,
+    CatalogueModule,
     DashboardModule,
     AvatarModule,
     BreadcrumbModule,
