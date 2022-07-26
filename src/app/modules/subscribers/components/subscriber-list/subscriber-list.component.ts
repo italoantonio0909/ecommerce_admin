@@ -37,8 +37,8 @@ export class SubscriberListComponent implements OnInit {
   }
 
   changeValuePage(event: any) {
-    // const page = parseInt(event.target.value);
-    // this.subscriberFetchData(this.limitOfDocuments, page)
+    const page = parseInt(event.target.value);
+    this.subscriberFetchData(this.limitOfDocuments, page)
   }
 
 }

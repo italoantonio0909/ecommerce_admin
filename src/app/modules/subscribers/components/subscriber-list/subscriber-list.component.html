@@ -1,8 +1,31 @@
 <c-row>
     <c-col xs>
         <c-card class="mb-4">
-            <c-card-header>Subscribers</c-card-header>
+            <!-- <c-card-header>
+                <c-row>
+                    <c-col class="d-none d-md-block" sm="5">
+                        <h4 class="card-title mb-0">Subscribers</h4>
+                    </c-col>
+                    <c-col class="d-none d-md-block" sm="7">
+                        <span>Subscribers</span>
+                    </c-col>
+                </c-row>
+            </c-card-header> -->
             <c-card-body>
+                <c-row class="mb-4 justify-content-md-center">
+                    <c-col>
+                        <h4 class="card-title mb-0">Subscribers</h4>
+                    </c-col>
+                    <c-col class="d-none d-md-block">
+                        <div class="float-end">
+                            <button cButton color="primary">Add subscriber</button>
+                            <span (click)="subscriberFetchData(5, 1)" cTooltipPlacement="bottom"
+                                cTooltip="Reload results" class="m-3 c-pointer me-1">
+                                <svg cIcon class="icon icon-lg me-2" name="cilReload"></svg>
+                            </span>
+                        </div>
+                    </c-col>
+                </c-row>
                 <table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0 border">
                     <thead cTableColor="light">
                         <tr>
@@ -33,13 +56,13 @@
                             </td>
                             <td class="text-center">
                                 <span class="fs-6 fw-normal c-pointer">
-                                    <span cButton class="p-0">
+                                    <span class="p-0">
                                         <svg cIcon class="icon icon-lg me-2" name="cilTrash"></svg>
                                     </span>
                                 </span>
                                 <span class="fs-6 fw-normal c-pointer">
                                     <c-dropdown alignment="end" variant="btn-group">
-                                        <span [caret]="false" cButton cDropdownToggle class="p-0" color="transparent">
+                                        <span [caret]="false" cDropdownToggle class="p-0" color="transparent">
                                             <svg cIcon class="icon icon-lg me-2" name="cilOptions"></svg>
                                         </span>
                                         <ul cDropdownMenu>
@@ -52,12 +75,11 @@
                         </tr>
                     </tbody>
                 </table>
-
-                <c-container class="mt-2">
+                <c-container class="p-0 mt-3">
                     <c-row>
-                        <c-col>
+                        <c-col xs="11">
                             <div *ngIf="subscriberCounter$ | async as counter">
-                                <c-pagination aria-label="Page navigation example">
+                                <c-pagination aria-label="Page navigation">
                                     <c-page-item aria-label="Previous">
                                         <a cPageLink routerLink="./"><span aria-hidden="true">&laquo;</span></a>
                                     </c-page-item>
@@ -72,15 +94,15 @@
                                 </c-pagination>
                             </div>
                         </c-col>
-                        <!-- <c-col class="mt-2">
-                            <select aria-label="" (change)="changeValuePage($event)" cSelect class="mb-3" sizing="lg"
-                                sizing="">
+                        <c-col xs="1">
+                            <select aria-label="" (change)="changeValuePage($event)" cSelect class="mb-3 p-2"
+                                sizing="lg">
                                 <option value="5">5</option>
                                 <option value="10">10</option>
                                 <option value="15">15</option>
                                 <option value="20">20</option>
                             </select>
-                        </c-col> -->
+                        </c-col>
                     </c-row>
                 </c-container>
             </c-card-body>

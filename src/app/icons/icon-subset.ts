@@ -71,6 +71,7 @@ import {
   cilPencil,
   cilPeople,
   cilPrint,
+  cilReload,
   cilPuzzle,
   cilReportSlash,
   cilSave,
@@ -187,6 +188,7 @@ export const iconSubset = {
   cilUnderline,
   cilUser,
   cilUserFemale,
+  cilReload,
   cilUserFollow,
   cilUserUnfollow,
   cilTruck
@@ -207,6 +209,7 @@ export enum IconSubset {
   cifBr = 'cifBr',
   cifEs = 'cifEs',
   cifFr = 'cifFr',
+  cilReload = 'cilReload',
   cifIn = 'cifIn',
   cifPl = 'cifPl',
   cifUs = 'cifUs',
