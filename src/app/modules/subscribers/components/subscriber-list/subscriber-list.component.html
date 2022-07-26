@@ -31,7 +31,23 @@
                                         {{subscriber?.status}}</c-badge>
                                 </div>
                             </td>
-                            <td>
+                            <td class="text-center">
+                                <span class="fs-6 fw-normal c-pointer">
+                                    <span cButton class="p-0">
+                                        <svg cIcon class="icon icon-lg me-2" name="cilTrash"></svg>
+                                    </span>
+                                </span>
+                                <span class="fs-6 fw-normal c-pointer">
+                                    <c-dropdown alignment="end" variant="btn-group">
+                                        <span [caret]="false" cButton cDropdownToggle class="p-0" color="transparent">
+                                            <svg cIcon class="icon icon-lg me-2" name="cilOptions"></svg>
+                                        </span>
+                                        <ul cDropdownMenu>
+                                            <li><a routerLink="./" cDropdownItem>Edit</a></li>
+                                            <li><a routerLink="./" cDropdownItem>View detail</a></li>
+                                        </ul>
+                                    </c-dropdown>
+                                </span>
                             </td>
                         </tr>
                     </tbody>
