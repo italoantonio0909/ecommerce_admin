@@ -78,6 +78,7 @@ const states = [
     SubscribersModule,
     CatalogueModule,
     DashboardModule,
+    SharedModule,
     AvatarModule,
     BreadcrumbModule,
     FooterModule,

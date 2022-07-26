@@ -32,13 +32,29 @@ export class SubscriberListComponent implements OnInit {
   }
 
   createCounter(counter: number) {
-    const total = Math.ceil(counter / this.limitOfDocuments)
-    return new Array(total)
+    const total = Math.ceil(counter / this.limitOfDocuments);
+    return new Array(total);
   }
 
   changeValuePage(event: any) {
-    const page = parseInt(event.target.value);
-    this.subscriberFetchData(this.limitOfDocuments, page)
+    const limitOfDocuments = parseInt(event.target.value);
+    this.subscriberFetchData(limitOfDocuments, this.page);
+  }
+
+  navigateNext(counter: number) {
+    const total = Math.ceil(counter / this.limitOfDocuments);
+    if (this.page === total) {
+      return false;
+    }
+    return this.subscriberFetchData(this.limitOfDocuments, this.page + 1);
+  }
+
+  navigatePrevious(counter: number) {
+    const total = Math.ceil(counter / this.limitOfDocuments);
+    if (this.page === 1) {
+      return false;
+    }
+    return this.subscriberFetchData(this.limitOfDocuments, this.page - 1);
   }
 
 }

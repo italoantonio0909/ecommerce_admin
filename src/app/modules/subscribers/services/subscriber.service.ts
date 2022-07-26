@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { getUrl } from 'src/app/helpers';
-import { SubscriberPaginated } from '../entities/Subscriber';
+import { SubscriberPaginated, Subscriber } from '../entities/Subscriber';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -22,5 +22,9 @@ export class SubscriberService {
     return this.http.get<{ subscribersTotal: number }>(
       `${getUrl()}/api/backoffice/subscribers/total`).pipe(map(e => e)
       );
+  }
+
+  subscriberCreate(subscriber: Subscriber): Observable<Subscriber> {
+    return this.http.post<Subscriber>(`${getUrl()}/api/backoffice/subscribers`, subscriber).pipe(a => a)
   }
 }
