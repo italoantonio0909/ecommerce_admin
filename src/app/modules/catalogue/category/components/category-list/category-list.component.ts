@@ -18,12 +18,11 @@ export class CategoryListComponent implements OnInit {
 
   @Select(CatalogueCategoryState.categoriesPaginateList) public categories$: Observable<Array<CatalogueCategory>>
 
-  @Select(CatalogueCategoryState.categoriesCount) public categoriesCount$: Observable<number>;
+  @Select(CatalogueCategoryState.categoriesPaginateListCount) public categoriesCount$: Observable<number>;
 
   ngOnInit(): void {
     this.store.dispatch(new CatalogueCategoryPaginateList(5, 0));
   }
-
 
   categoriesPaginateList = (limitOfDocuments: number, page: number,) => {
     this.page = page;
@@ -34,6 +33,27 @@ export class CategoryListComponent implements OnInit {
   createCounter(counter: number) {
     const total = Math.ceil(counter / this.limitOfDocuments)
     return new Array(total)
+  }
+
+  navigateNext(counter: number) {
+    const total = Math.ceil(counter / this.limitOfDocuments);
+    if (this.page === total) {
+      return false;
+    }
+    return this.categoriesPaginateList(this.limitOfDocuments, this.page + 1);
+  }
+
+  navigatePrevious(counter: number) {
+    const total = Math.ceil(counter / this.limitOfDocuments);
+    if (this.page === 1) {
+      return false;
+    }
+    return this.categoriesPaginateList(this.limitOfDocuments, this.page - 1);
+  }
+
+  changeValuePage(event: any) {
+    const limitOfDocuments = parseInt(event.target.value);
+    this.categoriesPaginateList(limitOfDocuments, this.page);
   }
 
 }

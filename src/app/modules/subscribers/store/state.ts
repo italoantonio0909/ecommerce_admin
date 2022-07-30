@@ -2,8 +2,8 @@ import { State, Action, StateContext, createSelector, Selector } from '@ngxs/sto
 import { Injectable } from '@angular/core';
 import { SubscriberService } from '../services/subscriber.service';
 import { tap } from 'rxjs/operators';
-import { SubscriberFetchData, SubscriberFetchTotal } from './actions';
 import { Subscriber } from '../entities/Subscriber';
+import { SubscriberPaginateListCount, SubscriberPaginateList, SubscriberCreate } from './actions';
 
 export interface SubscriberModelState {
     subscribersCount: number;
@@ -25,12 +25,12 @@ export class SubscriberState {
     constructor(private subscriberService: SubscriberService) { }
 
     @Selector()
-    static subscriberGetData(state: SubscriberModelState) {
+    static subscriberPaginateList(state: SubscriberModelState) {
         return state.subscribers
     }
 
     @Selector()
-    static subscriberGetCounter(state: SubscriberModelState) {
+    static subscriberPaginateListCount(state: SubscriberModelState) {
         return state.subscribersCount
     }
 
@@ -39,10 +39,10 @@ export class SubscriberState {
         return state.subscribersTotal
     }
 
-    @Action(SubscriberFetchData)
+    @Action(SubscriberPaginateList)
     subscriberFetchData(
         ctx: StateContext<SubscriberModelState>,
-        { limitOfDocuments, page }: SubscriberFetchData
+        { limitOfDocuments, page }: SubscriberPaginateList
     ) {
         const state = ctx.getState();
 
@@ -52,7 +52,16 @@ export class SubscriberState {
         )
     }
 
-    @Action(SubscriberFetchTotal)
+
+    @Action(SubscriberCreate)
+    subscriberCreate(
+        _: StateContext<SubscriberModelState>,
+        { subscriber }: SubscriberCreate
+    ) {
+        return this.subscriberService.subscriberCreate(subscriber);
+    }
+
+    @Action(SubscriberPaginateListCount)
     subscriberTotal(
         ctx: StateContext<SubscriberModelState>,
     ) {

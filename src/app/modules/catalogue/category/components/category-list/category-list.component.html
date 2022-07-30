@@ -1,13 +1,27 @@
 <c-row>
     <c-col xs>
         <c-card class="mb-4">
-            <c-card-header>Categories</c-card-header>
             <c-card-body>
+                <c-row class="mb-4 justify-content-md-center">
+                    <c-col>
+                        <h4 class="card-title mb-0">Category</h4>
+                    </c-col>
+                    <c-col class="d-none d-md-block">
+                        <div class="float-end">
+                            <button [routerLink]="['/catalogue/category-create']" cButton color="primary">
+                                Add category</button>
+                            <span (click)="categoriesPaginateList(5, 1)" class="m-3 c-pointer me-1">
+                                <svg cIcon class="icon icon-lg me-2" name="cilReload"></svg>
+                            </span>
+                        </div>
+                    </c-col>
+                </c-row>
                 <table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0 border">
                     <thead cTableColor="light">
                         <tr>
                             <th>Name</th>
                             <th>Created at</th>
+                            <th class="text-center">Is public</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -17,43 +31,64 @@
                                 <div>{{category?.name}}</div>
                             </td>
                             <td>
-                                <div>{{category?.created_at | date : "M/d/yy, h:mm a"}}</div>
+                                <div>{{category?.created_at | date : "MMMM, d yy, h:mm a"}}</div>
                             </td>
-                            <td>
+                            <td class="text-center">
+                                <span class="p-0">
+                                    <svg color="primary" cIcon class="icon icon-lg me-2 text-success"
+                                        [name]="category.is_public === true ? 'cilCheck' : ''"></svg>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span class="fs-6 fw-normal c-pointer">
+                                    <span class="p-0">
+                                        <svg cIcon class="icon icon-lg me-2" name="cilTrash"></svg>
+                                    </span>
+                                </span>
+                                <span class="fs-6 fw-normal c-pointer">
+                                    <c-dropdown alignment="end" variant="btn-group">
+                                        <span [caret]="false" cDropdownToggle class="p-0" color="transparent">
+                                            <svg cIcon class="icon icon-lg me-2" name="cilOptions"></svg>
+                                        </span>
+                                        <ul cDropdownMenu>
+                                            <li><a routerLink="./" cDropdownItem>Edit</a></li>
+                                            <li><a routerLink="./" cDropdownItem>View detail</a></li>
+                                        </ul>
+                                    </c-dropdown>
+                                </span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
-                <c-container class="mt-2">
+                <c-container class="p-0 mt-3">
                     <c-row>
-                        <c-col>
+                        <c-col xs="11">
                             <div *ngIf="categoriesCount$ | async as counter">
-                                <c-pagination aria-label="Page navigation example">
-                                    <c-page-item aria-label="Previous">
+                                <c-pagination aria-label="Page navigation">
+                                    <c-page-item (click)="navigatePrevious(counter)" aria-label="Previous">
                                         <a cPageLink routerLink="./"><span aria-hidden="true">&laquo;</span></a>
                                     </c-page-item>
                                     <c-page-item *ngFor="let e of createCounter(counter); let i = index;"
                                         [active]="i+1==page">
-                                        <a style="cursor: pointer;"
-                                            (click)="categoriesPaginateList(limitOfDocuments, i+1)"
-                                            cPageLink>{{i+1}}</a>
+                                        <a style="cursor: pointer;" cPageLink
+                                            (click)="categoriesPaginateList(limitOfDocuments, i+1)">{{i+1}}</a>
                                     </c-page-item>
                                     <c-page-item aria-label="Next">
-                                        <a cPageLink routerLink="./"><span aria-hidden="true">&raquo;</span></a>
+                                        <a cPageLink (click)="navigateNext(counter)"><span
+                                                aria-hidden="true">&raquo;</span></a>
                                     </c-page-item>
                                 </c-pagination>
                             </div>
                         </c-col>
-                        <!-- <c-col class="mt-2">
-                            <select aria-label="" (change)="changeValuePage($event)" cSelect class="mb-3" sizing="lg"
-                                sizing="">
+                        <c-col xs="1">
+                            <select aria-label="" (change)="changeValuePage($event)" cSelect class="mb-3 p-2"
+                                sizing="lg">
                                 <option value="5">5</option>
                                 <option value="10">10</option>
                                 <option value="15">15</option>
                                 <option value="20">20</option>
                             </select>
-                        </c-col> -->
+                        </c-col>
                     </c-row>
                 </c-container>
             </c-card-body>

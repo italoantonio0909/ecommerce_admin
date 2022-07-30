@@ -1,0 +1,59 @@
+<c-row>
+    <c-col xs>
+        <c-card class="mb-4">
+            <c-card-body>
+                <c-row class="mb-4 justify-content-md-center">
+                    <c-col>
+                        <h4 class="card-title mb-0">Category create</h4>
+                    </c-col>
+                </c-row>
+                <form (ngSubmit)="submit()" [validated]="validate" [formGroup]="categoryCreateForm" cForm
+                    class="row g-3 needs-validation">
+                    <c-row>
+                        <c-col md="6" xs="12">
+                            <label cLabel for="name">Name</label>
+                            <input autocomplete="off" formControlName="name" id="name" cFormControl required
+                                type="text" />
+                            <c-form-feedback [valid]="true"></c-form-feedback>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="6" xs="12">
+                            <label cLabel for="description">Description</label>
+                            <input autocomplete="off" formControlName="description" id="description" cFormControl
+                                required type="text" />
+                            <c-form-feedback [valid]="true"></c-form-feedback>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="6" xs="12">
+                            <label cLabel for="state">Is public</label>
+                            <select (change)="onChange($event)" cSelect id="state" formControlName="isPublic" required>
+                                <option value="">Choose ...</option>
+                                <option [value]="true">Public</option>
+                                <option [value]="false">Not public</option>
+                            </select>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="6" xs="12">
+                            <label cLabel for="file">Select image</label>
+                            <input aria-label="file-aria-label" (change)="onFileChange($event)" cFormControl id="file"
+                                type="file" />
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-4">
+                        <c-col md="6">
+                            <button cButton class="me-1" color="primary" type="submit">
+                                <div *ngIf="!isLoading; else loading">Submit</div>
+                                <ng-template #loading>
+                                    <app-loader></app-loader>
+                                </ng-template>
+                            </button>
+                        </c-col>
+                    </c-row>
+                </form>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>

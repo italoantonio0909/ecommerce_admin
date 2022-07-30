@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { CatalogueCategory } from '../entities/Category';
 import { CatalogueCategoryService } from '../services/catalogue-category.service';
-import { CatalogueCategoryPaginateList } from './actions';
+import { CatalogueCategoryPaginateList, CatalogueCategoryCreate } from './actions';
 
 export interface CatalogueCategoryModelState {
     categoryCount: number;
@@ -28,7 +28,7 @@ export class CatalogueCategoryState {
     }
 
     @Selector()
-    static categoriesCount(state: CatalogueCategoryModelState) {
+    static categoriesPaginateListCount(state: CatalogueCategoryModelState) {
         return state.categoryCount
     }
 
@@ -43,5 +43,13 @@ export class CatalogueCategoryState {
             tap(({ results, count }) =>
                 ctx.setState({ ...state, categories: results, categoryCount: count }))
         )
+    }
+
+    @Action(CatalogueCategoryCreate)
+    catalogueCategoryCreate(
+        _: StateContext<CatalogueCategoryModelState>,
+        { category }: CatalogueCategoryCreate
+    ) {
+        return this.service.catalogueCategoryCreate(category)
     }
 }

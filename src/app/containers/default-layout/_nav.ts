@@ -45,6 +45,20 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
+    name: 'Partner'
+  },
+  {
+    name: 'Partners',
+    url: '/theme/colors',
+    iconComponent: { name: 'cilGroup' }
+  },
+  {
+    name: 'Stock record',
+    url: '/theme/colors',
+    iconComponent: { name: 'cilTruck' }
+  },
+  {
+    title: true,
     name: 'Customers'
   },
   {
@@ -60,20 +74,6 @@ export const navItems: INavData[] = [
     name: 'Subscribers',
     url: '/subscribers',
     iconComponent: { name: 'cilUserFollow' }
-  },
-  {
-    title: true,
-    name: 'Partner'
-  },
-  {
-    name: 'Partners',
-    url: '/theme/colors',
-    iconComponent: { name: 'cilGroup' }
-  },
-  {
-    name: 'Stock record',
-    url: '/theme/colors',
-    iconComponent: { name: 'cilTruck' }
   },
   {
     title: true,

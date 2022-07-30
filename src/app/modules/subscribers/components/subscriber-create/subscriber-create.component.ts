@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { SubscriberService } from '../../services/subscriber.service';
 import { Subscriber } from '../../entities/Subscriber';
+import { Store } from '@ngxs/store';
+import { SubscriberCreate } from '../../store/actions';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-subscriber-create',
@@ -9,28 +11,32 @@ import { Subscriber } from '../../entities/Subscriber';
 })
 export class SubscriberCreateComponent {
 
-  constructor(private formBUilder: FormBuilder, private service: SubscriberService) { }
+  constructor(
+    private store: Store,
+    private formBUilder: FormBuilder) { }
 
   isLoading: boolean = false;
 
   subscriberCreateForm = this.formBUilder.group({
-    email: new FormControl("", Validators.required),
+    email: new FormControl("", [Validators.required, Validators.email]),
   });
 
   async submit() {
     this.isLoading = true;
 
-    try {
-      const data: Subscriber = {
-        email: this.subscriberCreateForm.get('email').value,
-      }
-
-      this.service.subscriberCreate(data).subscribe(() => this.isLoading = false);
-
-    } catch (error) {
-    } finally {
-      // this.isLoading = false;
+    const data: Subscriber = {
+      email: this.subscriberCreateForm.get('email').value,
     }
+
+    this.store.dispatch(new SubscriberCreate(data)).pipe(
+      catchError(
+        err => {
+          this.isLoading = false;
+          console.log({ err })
+          return of('')
+        })
+    ).subscribe(
+      () => this.isLoading = false);
   }
 
 }
