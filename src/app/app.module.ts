@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -50,6 +49,12 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { SubscribersModule } from './modules/subscribers/subscribers.module';
 import { SubscriberState } from './modules/subscribers/store/state';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { CatalogueModule } from './modules/catalogue/catalogue.module';
+import { CatalogueCategoryState } from './modules/catalogue/category/store/state';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { PostState } from './modules/blog/store/state';
+import { BlogModule } from './modules/blog/blog.module';
+import { NgxEditorModule } from 'ngx-editor';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -62,7 +67,9 @@ const APP_CONTAINERS = [
 ];
 
 const states = [
-  SubscriberState
+  SubscriberState,
+  CatalogueCategoryState,
+  PostState
 ]
 
 @NgModule({
@@ -73,7 +80,10 @@ const states = [
     HttpClientModule,
     AppRoutingModule,
     SubscribersModule,
+    CatalogueModule,
+    BlogModule,
     DashboardModule,
+    SharedModule,
     AvatarModule,
     BreadcrumbModule,
     FooterModule,
@@ -96,10 +106,12 @@ const states = [
     ProgressModule,
     BadgeModule,
     ListGroupModule,
+    NgxEditorModule,
     CardModule,
     NgxsModule.forRoot([...states], {
       developmentMode: true,
     }),
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [
     {

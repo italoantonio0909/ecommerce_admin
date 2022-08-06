@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IChartProps, DashboardChartsData } from '../../../views/dashboard/dashboard-charts-data';
 import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
-import { SubscriberFetchTotal } from '../../subscribers/store/actions';
 import { SubscriberState } from '../../subscribers/store/state';
 import { Observable } from 'rxjs';
+import { SubscriberPaginateListCount } from '../../subscribers/store/actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.initCharts();
 
-    this.store.dispatch(new SubscriberFetchTotal())
+    this.store.dispatch(new SubscriberPaginateListCount())
   }
 
   public mainChart: IChartProps = {};

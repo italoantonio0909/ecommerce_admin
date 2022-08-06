@@ -29,19 +29,33 @@ export const navItems: INavData[] = [
     name: 'Catalogue'
   },
   {
+    name: 'Categories',
+    url: '/catalogue/category',
+    iconComponent: { name: 'cilTag' }
+  },
+  {
     name: 'Products',
     url: '/theme/colors',
     iconComponent: { name: 'cil-tags' }
   },
   {
-    name: 'Categories',
-    url: '/theme/colors',
-    iconComponent: { name: 'cilTag' }
-  },
-  {
     name: 'Product Class',
     url: '/theme/colors',
     iconComponent: { name: 'cil-window-restore' }
+  },
+  {
+    title: true,
+    name: 'Partner'
+  },
+  {
+    name: 'Partners',
+    url: '/theme/colors',
+    iconComponent: { name: 'cilGroup' }
+  },
+  {
+    name: 'Stock record',
+    url: '/theme/colors',
+    iconComponent: { name: 'cilTruck' }
   },
   {
     title: true,
@@ -63,25 +77,11 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
-    name: 'Partner'
-  },
-  {
-    name: 'Partners',
-    url: '/theme/colors',
-    iconComponent: { name: 'cilGroup' }
-  },
-  {
-    name: 'Stock record',
-    url: '/theme/colors',
-    iconComponent: { name: 'cilTruck' }
-  },
-  {
-    title: true,
     name: 'Blog'
   },
   {
     name: 'Posts',
-    url: '/theme/colors',
+    url: '/blog/posts',
     iconComponent: { name: 'cilNewspaper' }
   },
   {

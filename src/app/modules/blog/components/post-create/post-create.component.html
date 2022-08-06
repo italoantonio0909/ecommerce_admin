@@ -1,0 +1,50 @@
+<c-row>
+    <c-col xs>
+        <c-card class="mb-4">
+            <c-card-body>
+                <c-row class="mb-4 justify-content-md-center">
+                    <c-col>
+                        <h4 class="card-title mb-0">Create post</h4>
+                    </c-col>
+                </c-row>
+                <form (ngSubmit)="submit()" [validated]="validate" [formGroup]="postCreateForm" cForm
+                    class="row g-3 needs-validation">
+                    <c-col md="8">
+                        <label cLabel for="email">title</label>
+                        <input autocomplete="off" formControlName="title" id="email" cFormControl required
+                            type="text" />
+                    </c-col>
+                    <c-col md="8">
+                        <label cLabel for="email">Meta description</label>
+                        <input autocomplete="off" formControlName="metaDescription" id="email" cFormControl required
+                            type="text" />
+                        <c-form-feedback [valid]="true"></c-form-feedback>
+                    </c-col>
+                    <c-col md="8" xs="12">
+                        <label cLabel for="state">Is public</label>
+                        <select (change)="onChange($event)" cSelect id="state" formControlName="published" required>
+                            <option value="">Choose ...</option>
+                            <option [value]="true">Public</option>
+                            <option [value]="false">Not public</option>
+                        </select>
+                    </c-col>
+                    <c-col md="8">
+                        <div class="NgxEditor__Wrapper">
+                            <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                            <ngx-editor [editor]="editor" disabled="false" placeholder="'Type here...'">
+                            </ngx-editor>
+                        </div>
+                    </c-col>
+                    <c-col xs=" 12">
+                        <button cButton class="me-1" color="primary" type="submit">
+                            <div *ngIf="!isLoading; else loading">Submit</div>
+                            <ng-template #loading>
+                                <app-loader></app-loader>
+                            </ng-template>
+                        </button>
+                    </c-col>
+                </form>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>

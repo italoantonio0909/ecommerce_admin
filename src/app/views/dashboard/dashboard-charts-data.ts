@@ -125,7 +125,7 @@ export class DashboardChartsData {
       },
       tooltip: {
         callbacks: {
-          labelColor: function(context: any) {
+          labelColor: function (context: any) {
             return {
               backgroundColor: context.dataset.borderColor
             };

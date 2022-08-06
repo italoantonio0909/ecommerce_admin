@@ -1,11 +1,10 @@
-<!--<c-header class="mb-4 d-print-none" position="sticky">-->
 <ng-container>
   <c-container [fluid]="true">
     <button toggle="visible" cHeaderToggler [cSidebarToggle]="sidebarId" class="ps-1">
       <svg cIcon name="cilMenu" size="lg"></svg>
     </button>
     <c-header-nav class="d-none d-lg-flex me-auto">
-      <c-nav-item>
+      <!-- <c-nav-item>
         <a cNavLink routerLink="/dashboard" routerLinkActive="active">
           Dashboard
         </a>
@@ -17,7 +16,7 @@
         <a cNavLink routerLink="/settings" routerLinkActive="active">
           Settings
         </a>
-      </c-nav-item>
+      </c-nav-item> -->
     </c-header-nav>
 
     <c-header-nav class="d-none d-lg-flex">
@@ -47,7 +46,6 @@
     <c-breadcrumb-router class="ms-2"></c-breadcrumb-router>
   </c-container>
 </ng-container>
-<!--</c-header>-->
 
 <ng-template #userDropdown>
   <c-dropdown alignment="end" variant="nav-item">

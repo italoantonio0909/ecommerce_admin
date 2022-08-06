@@ -1,0 +1,30 @@
+<c-row>
+    <c-col xs>
+        <c-card class="mb-4">
+            <c-card-body>
+                <c-row class="mb-4 justify-content-md-center">
+                    <c-col>
+                        <h4 class="card-title mb-0">Create subscriber</h4>
+                    </c-col>
+                </c-row>
+                <form (ngSubmit)="submit()" [validated]="validate" [formGroup]="subscriberCreateForm" cForm
+                    class="row g-3 needs-validation">
+                    <c-col md="6">
+                        <label cLabel for="email">Email</label>
+                        <input autocomplete="off" formControlName="email" id="email" cFormControl required
+                            type="email" />
+                        <c-form-feedback [valid]="true"></c-form-feedback>
+                    </c-col>
+                    <c-col xs="12">
+                        <button cButton class="me-1" color="primary" type="submit">
+                            <div *ngIf="!isLoading; else loading">Submit</div>
+                            <ng-template #loading>
+                                <app-loader></app-loader>
+                            </ng-template>
+                        </button>
+                    </c-col>
+                </form>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>

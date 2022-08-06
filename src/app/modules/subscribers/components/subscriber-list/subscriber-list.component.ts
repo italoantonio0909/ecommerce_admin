@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { SubscriberFetchData } from '../../store/actions';
 import { SubscriberState } from '../../store/state';
 import { Observable } from 'rxjs';
 import { Subscriber } from '../../entities/Subscriber';
+import { SubscriberPaginateList } from '../../store/actions';
 
 @Component({
   selector: 'app-subscriber-list',
@@ -17,9 +17,9 @@ export class SubscriberListComponent implements OnInit {
 
   constructor(private store: Store) { }
 
-  @Select(SubscriberState.subscriberGetData) subscribers$: Observable<Array<Subscriber>>;
+  @Select(SubscriberState.subscriberPaginateList) subscribers$: Observable<Array<Subscriber>>;
 
-  @Select(SubscriberState.subscriberGetCounter) subscriberCounter$: Observable<number>;
+  @Select(SubscriberState.subscriberPaginateListCount) subscriberCounter$: Observable<number>;
 
   ngOnInit(): void {
     this.subscriberFetchData(this.limitOfDocuments, this.page);
@@ -28,17 +28,33 @@ export class SubscriberListComponent implements OnInit {
   subscriberFetchData = (limitOfDocuments: number, page: number,) => {
     this.page = page;
     this.limitOfDocuments = limitOfDocuments;
-    this.store.dispatch(new SubscriberFetchData(limitOfDocuments, page));
+    this.store.dispatch(new SubscriberPaginateList(limitOfDocuments, page));
   }
 
   createCounter(counter: number) {
-    const total = Math.ceil(counter / this.limitOfDocuments)
-    return new Array(total)
+    const total = Math.ceil(counter / this.limitOfDocuments);
+    return new Array(total);
   }
 
   changeValuePage(event: any) {
-    // const page = parseInt(event.target.value);
-    // this.subscriberFetchData(this.limitOfDocuments, page)
+    const limitOfDocuments = parseInt(event.target.value);
+    this.subscriberFetchData(limitOfDocuments, this.page);
+  }
+
+  navigateNext(counter: number) {
+    const total = Math.ceil(counter / this.limitOfDocuments);
+    if (this.page === total) {
+      return false;
+    }
+    return this.subscriberFetchData(this.limitOfDocuments, this.page + 1);
+  }
+
+  navigatePrevious(counter: number) {
+    const total = Math.ceil(counter / this.limitOfDocuments);
+    if (this.page === 1) {
+      return false;
+    }
+    return this.subscriberFetchData(this.limitOfDocuments, this.page - 1);
   }
 
 }
