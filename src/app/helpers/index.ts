@@ -13,6 +13,7 @@ export const AlertMessage = function (title: string) {
     background: "#3c4b64",
     color: "rgba(255, 255, 255, 0.6)",
     timerProgressBar: true,
+    titleText: "",
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
