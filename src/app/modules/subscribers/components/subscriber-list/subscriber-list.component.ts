@@ -57,4 +57,21 @@ export class SubscriberListComponent implements OnInit {
     return this.subscriberFetchData(this.limitOfDocuments, this.page - 1);
   }
 
+  tableColumns: Array<{ header: string }> = [
+    {
+      header: "Email"
+    },
+    {
+      header: "Created at"
+    },
+    {
+      header: "Activity"
+    },
+    {
+      header: "Status"
+    },
+    {
+      header: "Actions"
+    }
+  ]
 }

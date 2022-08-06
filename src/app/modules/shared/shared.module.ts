@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from './loader/loader.component';
+import { TableComponent } from './table/table.component';
+import { TableModule } from '@coreui/angular';
 
-const components = [LoaderComponent]
+const components = [LoaderComponent, TableComponent]
 
 @NgModule({
-  declarations: [
-    components
-  ],
+  declarations: [components],
   imports: [
-    CommonModule
+    CommonModule,
+    TableModule
   ],
   exports: [components]
 })
