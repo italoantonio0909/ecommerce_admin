@@ -51,6 +51,10 @@ import { SubscriberState } from './modules/subscribers/store/state';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { CatalogueModule } from './modules/catalogue/catalogue.module';
 import { CatalogueCategoryState } from './modules/catalogue/category/store/state';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { PostState } from './modules/blog/store/state';
+import { BlogModule } from './modules/blog/blog.module';
+import { NgxEditorModule } from 'ngx-editor';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -65,6 +69,7 @@ const APP_CONTAINERS = [
 const states = [
   SubscriberState,
   CatalogueCategoryState,
+  PostState
 ]
 
 @NgModule({
@@ -76,6 +81,7 @@ const states = [
     AppRoutingModule,
     SubscribersModule,
     CatalogueModule,
+    BlogModule,
     DashboardModule,
     SharedModule,
     AvatarModule,
@@ -100,10 +106,12 @@ const states = [
     ProgressModule,
     BadgeModule,
     ListGroupModule,
+    NgxEditorModule,
     CardModule,
     NgxsModule.forRoot([...states], {
       developmentMode: true,
     }),
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [
     {

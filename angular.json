@@ -37,7 +37,9 @@
             "styles": [
               "src/scss/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/sweetalert2/dist/sweetalert2.min.js"
+            ],
             "allowedCommonJsDependencies": [
               "chart.js",
               "@coreui/chartjs/dist/js/coreui-chartjs.js"

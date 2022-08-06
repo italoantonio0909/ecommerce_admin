@@ -7,7 +7,7 @@
                         <h4 class="card-title mb-0">Create subscriber</h4>
                     </c-col>
                 </c-row>
-                <form (ngSubmit)="submit()" [validated]="true" [formGroup]="subscriberCreateForm" cForm
+                <form (ngSubmit)="submit()" [validated]="validate" [formGroup]="subscriberCreateForm" cForm
                     class="row g-3 needs-validation">
                     <c-col md="6">
                         <label cLabel for="email">Email</label>
@@ -16,8 +16,7 @@
                         <c-form-feedback [valid]="true"></c-form-feedback>
                     </c-col>
                     <c-col xs="12">
-                        <button [disabled]="!subscriberCreateForm.valid" cButton class="me-1" color="primary"
-                            type="submit">
+                        <button cButton class="me-1" color="primary" type="submit">
                             <div *ngIf="!isLoading; else loading">Submit</div>
                             <ng-template #loading>
                                 <app-loader></app-loader>

@@ -4,6 +4,7 @@ import { Subscriber } from '../../entities/Subscriber';
 import { Store } from '@ngxs/store';
 import { SubscriberCreate } from '../../store/actions';
 import { catchError, of } from 'rxjs';
+import { AlertMessage } from '../../../../helpers/index';
 
 @Component({
   selector: 'app-subscriber-create',
@@ -11,9 +12,13 @@ import { catchError, of } from 'rxjs';
 })
 export class SubscriberCreateComponent {
 
+  validate: boolean = false;
+
   constructor(
     private store: Store,
-    private formBUilder: FormBuilder) { }
+    private formBUilder: FormBuilder) {
+    AlertMessage("Subscriber created");
+  }
 
   isLoading: boolean = false;
 
@@ -22,8 +27,13 @@ export class SubscriberCreateComponent {
   });
 
   async submit() {
-    this.isLoading = true;
+    this.validate = true;
 
+    if (this.subscriberCreateForm.invalid) {
+      return;
+    }
+
+    this.isLoading = true;
     const data: Subscriber = {
       email: this.subscriberCreateForm.get('email').value,
     }
@@ -36,7 +46,10 @@ export class SubscriberCreateComponent {
           return of('')
         })
     ).subscribe(
-      () => this.isLoading = false);
+      () => {
+        this.isLoading = false;
+        AlertMessage("Subscriber created successfull");
+      });
   }
 
 }
