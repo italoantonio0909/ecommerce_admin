@@ -1,0 +1,46 @@
+<table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0 border">
+    <thead cTableColor="light">
+        <tr>
+            <th *ngFor="let column of tableColumns">{{column.header}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of dataColumns$ | async">
+            <td>
+                <div>{{data}}</div>
+            </td>
+        </tr>
+        <!-- <td>
+                <div>{{subscriber?.created_at | date : "M/d/yy, h:mm a"}}</div>
+            </td>
+            <td>
+                <div class="small text-medium-emphasis">Last modified</div>
+                <div>{{subscriber?.modified_at | date : "M/d/yy, h:mm a"}}</div>
+            </td>
+            <td>
+                <div>
+                    <c-badge [color]="subscriber?.status == 'active' ?'success':'error'">
+                        {{subscriber?.status}}</c-badge>
+                </div>
+            </td> -->
+        <!-- <td class="text-center">
+                <span class="fs-6 fw-normal c-pointer">
+                    <span class="p-0">
+                        <svg cIcon class="icon icon-lg me-2" name="cilTrash"></svg>
+                    </span>
+                </span>
+                <span class="fs-6 fw-normal c-pointer">
+                    <c-dropdown alignment="end" variant="btn-group">
+                        <span [caret]="false" cDropdownToggle class="p-0" color="transparent">
+                            <svg cIcon class="icon icon-lg me-2" name="cilOptions"></svg>
+                        </span>
+                        <ul cDropdownMenu>
+                            <li><a routerLink="./" cDropdownItem>Edit</a></li>
+                            <li><a routerLink="./" cDropdownItem>View detail</a></li>
+                        </ul>
+                    </c-dropdown>
+                </span>
+            </td> -->
+        <!-- </tr>  -->
+    </tbody>
+</table>

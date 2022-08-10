@@ -4,7 +4,6 @@ import { Subscriber } from '../../entities/Subscriber';
 import { Store } from '@ngxs/store';
 import { SubscriberCreate } from '../../store/actions';
 import { catchError, of } from 'rxjs';
-import { AlertMessage } from '../../../../helpers/index';
 
 @Component({
   selector: 'app-subscriber-create',
@@ -17,7 +16,6 @@ export class SubscriberCreateComponent {
   constructor(
     private store: Store,
     private formBUilder: FormBuilder) {
-    AlertMessage("Subscriber created");
   }
 
   isLoading: boolean = false;
@@ -48,7 +46,6 @@ export class SubscriberCreateComponent {
     ).subscribe(
       () => {
         this.isLoading = false;
-        AlertMessage("Subscriber created successfull");
       });
   }
 
