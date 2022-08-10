@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { getUrl } from 'src/app/helpers';
-import { SubscriberPaginated, Subscriber } from '../entities/Subscriber';
+import { Subscriber } from '../entities/Subscriber';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Paginate } from '../../shared/entities/Pagination';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class SubscriberService {
 
   constructor(private http: HttpClient) { }
 
-  subscriberFetchData(limit: number, startAfter: number): Observable<SubscriberPaginated> {
-    return this.http.get<SubscriberPaginated>(
+  subscriberFetchData(limit: number, startAfter: number): Observable<Paginate<Subscriber>> {
+    return this.http.get<Paginate<Subscriber>>(
       `${getUrl()}/api/backoffice/subscribers/paginate/${limit}/${startAfter}`).pipe(map(e => e)
       );
   }

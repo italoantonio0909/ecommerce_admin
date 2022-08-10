@@ -61,7 +61,7 @@
                             </td>
                             <td>
                                 <div>
-                                    <c-badge [color]="subscriber?.status == 'active' ?'success':'error'">
+                                    <c-badge [color]="subscriber?.status ? 'success' : 'error'">
                                         {{subscriber?.status}}</c-badge>
                                 </div>
                             </td>
