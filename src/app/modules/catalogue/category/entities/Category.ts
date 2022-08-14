@@ -7,8 +7,3 @@ export interface CatalogueCategory {
     readonly created_at?: number;
     readonly modified_at?: number;
 }
-
-export interface CatalogueCategoryPaginate {
-    results: Array<CatalogueCategory>;
-    count: number;
-}

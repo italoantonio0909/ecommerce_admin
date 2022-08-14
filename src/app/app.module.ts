@@ -55,6 +55,8 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { PostState } from './modules/blog/store/state';
 import { BlogModule } from './modules/blog/blog.module';
 import { NgxEditorModule } from 'ngx-editor';
+import { CatalogueProductClassState } from './modules/catalogue/product-class/store/state';
+import { CatalogueProductState } from './modules/catalogue/product/store/state';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -69,7 +71,9 @@ const APP_CONTAINERS = [
 const states = [
   SubscriberState,
   CatalogueCategoryState,
-  PostState
+  CatalogueProductClassState,
+  CatalogueProductState,
+  PostState,
 ]
 
 @NgModule({

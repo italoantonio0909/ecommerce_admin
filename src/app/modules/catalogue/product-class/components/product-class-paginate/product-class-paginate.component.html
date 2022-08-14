@@ -1,37 +1,16 @@
-<!-- <c-row>
-    <c-col xs>
-        <c-card class="mb-4">
-            <c-card-body>
-                <app-table [dataColumns$]="subscribers$" [tableColumns]="tableColumns"></app-table>
-            </c-card-body>
-        </c-card>
-    </c-col>
-</c-row>
- -->
-
 <c-row>
     <c-col xs>
         <c-card class="mb-4">
-            <!-- <c-card-header>
-                <c-row>
-                    <c-col class="d-none d-md-block" sm="5">
-                        <h4 class="card-title mb-0">Subscribers</h4>
-                    </c-col>
-                    <c-col class="d-none d-md-block" sm="7">
-                        <span>Subscribers</span>
-                    </c-col>
-                </c-row>
-            </c-card-header> -->
             <c-card-body>
                 <c-row class="mb-4 justify-content-md-center">
                     <c-col>
-                        <h4 class="card-title mb-0">Subscribers</h4>
+                        <h4 class="card-title mb-0">Product class</h4>
                     </c-col>
                     <c-col class="d-none d-md-block">
                         <div class="float-end">
-                            <button [routerLink]="['/subscribers/subscribers-create']" cButton color="primary">Add
-                                subscriber</button>
-                            <span (click)="subscriberFetchData(5, 1)" class="m-3 c-pointer me-1">
+                            <button [routerLink]="['/catalogue/product-class-create']" cButton color="primary">
+                                Add product class</button>
+                            <span (click)="productClassPaginateList(5, 1)" class="m-3 c-pointer me-1">
                                 <svg cIcon class="icon icon-lg me-2" name="cilReload"></svg>
                             </span>
                         </div>
@@ -40,35 +19,39 @@
                 <table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0 border">
                     <thead cTableColor="light">
                         <tr>
-                            <th>Email</th>
+                            <th>Name</th>
                             <th>Created at</th>
-                            <th>Activity</th>
-                            <th>Status</th>
+                            <th class="text-center">Require shipping</th>
+                            <th class="text-center">Track stock</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let subscriber of subscribers$ | async">
+                        <div *ngIf="productClass$ | async as productClass">
+                            <div *ngIf="productClass.length==0">
+                                There is no data to show
+                            </div>
+                        </div>
+                    </tbody>
+                    <tbody>
+                        <tr *ngFor="let product of productClass$ | async">
                             <td>
-                                <div>{{subscriber?.email}}</div>
+                                <div>{{product?.name}}</div>
                             </td>
                             <td>
-                                <div>{{subscriber?.created_at | date : "M/d/yy, h:mm a"}}</div>
+                                <div>{{product?.created_at | date : "MMMM, d yy, h:mm a"}}</div>
                             </td>
-                            <td>
-                                <div class="small text-medium-emphasis">Last modified</div>
-                                <div>{{subscriber?.modified_at | date : "MMMM/dd/yy, h:mm a"}}
-                                </div>
-                            </td>
-                            <td>
+                            <td class="text-center">
                                 <span class="p-0">
                                     <svg color="primary" cIcon class="icon icon-lg me-2 text-success"
-                                        [name]="subscriber.status === true ? 'cilCheck' : ''"></svg>
+                                        [name]="product.required_shipping === true ? 'cilCheck' : ''"></svg>
                                 </span>
-                                <!-- <div>
-                                    <c-badge [color]="subscriber?.status ? 'success' : 'error'">
-                                        {{subscriber?.status}}</c-badge>
-                                </div> -->
+                            </td>
+                            <td class="text-center">
+                                <span class="p-0">
+                                    <svg color="primary" cIcon class="icon icon-lg me-2 text-success"
+                                        [name]="product.track_stock === true ? 'cilCheck' : ''"></svg>
+                                </span>
                             </td>
                             <td class="text-center">
                                 <span class="fs-6 fw-normal c-pointer">
@@ -94,7 +77,7 @@
                 <c-container class="p-0 mt-3">
                     <c-row>
                         <c-col xs="11">
-                            <div *ngIf="subscriberCounter$ | async as counter">
+                            <div *ngIf="categoriesCount$ | async as counter; else paginationEmpty">
                                 <c-pagination aria-label="Page navigation">
                                     <c-page-item (click)="navigatePrevious(counter)" aria-label="Previous">
                                         <a cPageLink routerLink="./"><span aria-hidden="true">&laquo;</span></a>
@@ -102,7 +85,7 @@
                                     <c-page-item *ngFor="let e of createCounter(counter); let i = index;"
                                         [active]="i+1==page">
                                         <a style="cursor: pointer;" cPageLink
-                                            (click)="subscriberFetchData(limitOfDocuments, i+1)">{{i+1}}</a>
+                                            (click)="productClassPaginateList(limitOfDocuments, i+1)">{{i+1}}</a>
                                     </c-page-item>
                                     <c-page-item aria-label="Next">
                                         <a cPageLink (click)="navigateNext(counter)"><span
@@ -110,6 +93,17 @@
                                     </c-page-item>
                                 </c-pagination>
                             </div>
+                            <ng-template #paginationEmpty>
+                                <c-pagination aria-label="Page navigation">
+                                    <c-page-item aria-label="Previous">
+                                        <a cPageLink><span aria-hidden="true">&laquo;</span></a>
+                                    </c-page-item>
+                                    <c-page-item aria-label="Next">
+                                        <a cPageLink><span aria-hidden="true">&raquo;</span></a>
+                                    </c-page-item>
+                                </c-pagination>
+                            </ng-template>
+
                         </c-col>
                         <c-col xs="1">
                             <select aria-label="" (change)="changeValuePage($event)" cSelect class="mb-3 p-2"

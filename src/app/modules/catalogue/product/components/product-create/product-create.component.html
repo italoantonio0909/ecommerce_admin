@@ -1,0 +1,124 @@
+<c-row>
+    <c-col xs>
+        <c-card class="mb-4">
+            <c-card-body>
+                <c-row class="mb-5 justify-content-md-center">
+                    <c-col>
+                        <h4 class="card-title mb-0">Product create</h4>
+                    </c-col>
+                </c-row>
+                <form (ngSubmit)="submit()" [validated]="validate" [formGroup]="productCreateForm" cForm
+                    class="row g-3 needs-validation">
+                    <c-row class="mt-3">
+                        <c-col md="7" xs="12">
+                            <label cLabel for="state">Structure</label>
+                            <select (change)="onChangeIsPublic($event)" cSelect id="state" formControlName="is_public"
+                                required>
+                                <option value="">Choose ...</option>
+                                <option [value]="true">Public</option>
+                                <option [value]="false">No public</option>
+                            </select>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="7" xs="12">
+                            <label cLabel for="state">Is public</label>
+                            <select (change)="onChangeIsPublic($event)" cSelect id="state" formControlName="is_public"
+                                required>
+                                <option value="">Choose ...</option>
+                                <option [value]="true">Public</option>
+                                <option [value]="false">No public</option>
+                            </select>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="7" xs="12">
+                            <label cLabel for="state">Parent</label>
+                            <select (change)="onChangeIsPublic($event)" cSelect id="state" formControlName="is_public"
+                                required>
+                                <option value="">Choose ...</option>
+                                <option [value]="true">Public</option>
+                                <option [value]="false">No public</option>
+                            </select>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="7" xs="12">
+                            <label cLabel for="title">Title</label>
+                            <input autocomplete="off" formControlName="title" id="title" cFormControl required
+                                type="text" />
+                            <c-form-feedback [valid]="true"></c-form-feedback>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="7" xs="12">
+                            <label cLabel for="meta_title">Meta title</label>
+                            <input autocomplete="off" formControlName="meta_title" id="meta_title" cFormControl required
+                                type="text" />
+                            <c-form-feedback [valid]="true"></c-form-feedback>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="7" xs="12">
+                            <label cLabel for="description">Description</label>
+                            <textarea rows="5" autocomplete="off" formControlName="description" id="description"
+                                cFormControl required type="text"></textarea>
+                            <c-form-feedback [valid]="true"></c-form-feedback>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="7" xs="12">
+                            <label cLabel for="meta_description">Meta description</label>
+                            <textarea rows="4" autocomplete="off" formControlName="meta_description"
+                                id="meta_description" cFormControl required type="text"></textarea>
+                            <c-form-feedback [valid]="true"></c-form-feedback>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="7" xs="12">
+                            <label cLabel for="state">Product class</label>
+                            <select (change)="onChangeIsPublic($event)" cSelect id="state" formControlName="is_public"
+                                required>
+                                <option value="">Choose ...</option>
+                                <option [value]="true">Public</option>
+                                <option [value]="false">No public</option>
+                            </select>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="7" xs="12">
+                            <label cLabel for="state">Categories</label>
+                            <select (change)="onChangeIsPublic($event)" cSelect id="state" formControlName="is_public"
+                                required>
+                                <option value="">Choose ...</option>
+                                <option [value]="true">Public</option>
+                                <option [value]="false">No public</option>
+                            </select>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-3">
+                        <c-col md="7" xs="12">
+                            <label cLabel for="state">Is discountable</label>
+                            <select (change)="onChangeIsDiscountable($event)" cSelect id="state"
+                                formControlName="is_public" required>
+                                <option value="">Choose ...</option>
+                                <option [value]="true">Discountable</option>
+                                <option [value]="false">Not siscountable</option>
+                            </select>
+                        </c-col>
+                    </c-row>
+                    <c-row class="mt-4">
+                        <c-col md="6">
+                            <button cButton class="me-1" color="primary" type="submit">
+                                <div *ngIf="!isLoading; else loading">Submit</div>
+                                <ng-template #loading>
+                                    <app-loader></app-loader>
+                                </ng-template>
+                            </button>
+                        </c-col>
+                    </c-row>
+                </form>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
