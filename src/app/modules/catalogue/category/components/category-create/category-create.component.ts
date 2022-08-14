@@ -22,17 +22,18 @@ export class CategoryCreateComponent {
     name: new FormControl("", Validators.required),
     description: new FormControl("", Validators.required),
     isPublic: new FormControl(true, Validators.required),
-    image: new FormControl(null)
+    // image: new FormControl(null)
   })
 
   submit() {
-    this.isLoading = true;
-
     this.validate = true;
+
     if (this.categoryCreateForm.invalid) {
       this.isLoading = false;
       return;
     }
+
+    this.isLoading = true;
 
     const data: CatalogueCategory = {
       name: this.categoryCreateForm.get("name").value,
@@ -45,7 +46,10 @@ export class CategoryCreateComponent {
         this.isLoading = false;
         return of('')
       })
-    ).subscribe(() => this.isLoading = false)
+    ).subscribe(() => {
+      this.categoryCreateForm.reset();
+      this.isLoading = false;
+    })
   }
 
   onChange(event: any) {
@@ -58,18 +62,18 @@ export class CategoryCreateComponent {
   }
 
   onFileChange(event: any) {
-    let reader = new FileReader();
+    // let reader = new FileReader();
 
-    if (event.target.files && event.target.files.length) {
-      const file = event.target.files;
-      reader.readAsDataURL(file);
+    // if (event.target.files && event.target.files.length) {
+    //   const file = event.target.files;
+    //   reader.readAsDataURL(file);
 
-      reader.onload = () => {
-        this.categoryCreateForm.patchValue({
-          image: reader.result
-        });
-      };
-    }
+    //   reader.onload = () => {
+    //     this.categoryCreateForm.patchValue({
+    //       image: reader.result
+    //     });
+    //   };
+    // }
   }
 
 }

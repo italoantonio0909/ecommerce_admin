@@ -34,14 +34,14 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cilTag' }
   },
   {
-    name: 'Products',
-    url: '/theme/colors',
-    iconComponent: { name: 'cil-tags' }
+    name: 'Product Class',
+    url: '/catalogue/product-class',
+    iconComponent: { name: 'cil-window-restore' }
   },
   {
-    name: 'Product Class',
-    url: '/theme/colors',
-    iconComponent: { name: 'cil-window-restore' }
+    name: 'Products',
+    url: '/catalogue/product',
+    iconComponent: { name: 'cil-tags' }
   },
   {
     title: true,
@@ -63,7 +63,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Customers',
-    url: '/theme/colors',
+    url: '/customers/customers',
     iconComponent: { name: 'cil-user' }
   },
   {
